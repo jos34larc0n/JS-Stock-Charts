@@ -10,12 +10,26 @@ async function main() {
     const {GME, MSFT, DIS, BNTX} = data;
     //Create An Array of stocks
     const stocks = [GME, MSFT, DIS, BNTX];
-    stocks.forEach( stock => stock.values.reverse())
-    // Create an array of stocks
-
     // Reverse the order of the values for each stock
     stocks.forEach(stock => stock.values.reverse());
+// import chart.js create new Chart function
+    new Chart(timeChartCanvas.getContext('2d'), {
+        type: 'line',
+        data: {
+            labels: stocks[0].values.map( value => value.datetime),
+            datasets: [{
+                label: '# of Votes',
+                data: [12, 19, 3, 5, 2, 3],
+                backgroundColor:  'rgba(255, 99, 132, 0.2)',
+                borderColor: 'rgba(255, 99, 132, 1)'
+            }]
+        }
+    });
+
 }
+
+    
+
 // we changed this for destructured data
    /* let GME = data.GME;
     let MSFT = data.MSFT;
@@ -26,10 +40,3 @@ async function main() {
     stocks.forEach(stock => stock.values.reverse());*/
 
 
-// Bonus Note: 
-// Another way to write the above lines would to refactor it as:
- // const {GME, MSFT, DIS, BTNX} = result 
-// This is an example of "destructuring" an object
-// "Destructuring" creates new variables from an object or an array
-
-main()
